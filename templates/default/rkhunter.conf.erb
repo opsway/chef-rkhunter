@@ -1,0 +1,18 @@
+##
+## Managed by chef
+##
+
+# these settings all just come out of attributes. See them for more info.
+
+<% node[:rkhunter][:conf].sort.each do |setting, value| -%>
+<%   case value -%>
+<%   when NilClass -%>
+<%     # skip -%>
+<%   when Array -%>
+<%     value.sort.each do |v| -%>
+<%=      setting %>=<%= v.to_s %>
+<%     end -%>
+<%   else -%>
+<%=    setting %>=<%= value.to_s %>
+<%   end -%>
+<% end -%>

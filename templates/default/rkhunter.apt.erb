@@ -1,0 +1,3 @@
+// Makes sure that rkhunter file properties database is updated after each remove or install only if hashes test is enabled
+DPkg::Post-Invoke { "if [ -x /usr/bin/rkhunter ] && ( grep -qiE '^APT_AUTOGEN=.?(true|yes)' /etc/default/rkhunter && ! grep -qE '^DISABLE_TESTS=.*(hashes.*attributes|attributes.*hashes|properties)' /etc/rkhunter.conf | grep -qE '^ENABLE_TESTS=.*(hashes|attributes|properties)' /etc/rkhunter.conf ); then /usr/bin/rkhunter --propupd --nolog; fi" }
+

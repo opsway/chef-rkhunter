@@ -1,0 +1,11 @@
+##
+## Managed by chef
+##
+
+# these settings all just come out of attributes. See them for more info.
+
+<% node[:rkhunter][:cron_options].sort.each do |setting, value| -%>
+<%   if not value.is_a?(NilClass) and not value.is_a?(Array) -%>
+<%=   setting %>="<%= value %>"
+<%  end -%>
+<% end -%>
